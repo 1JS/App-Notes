@@ -1,15 +1,5 @@
-<!-- <div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
-</div> -->
 <header>
 	<h1>Simple Note <span>A simple App for people who take notes</span></h1>
-
 </header>
 
 
@@ -17,22 +7,22 @@
 	<div class="row-fluid">
 		<div class="span6">
 			<h2>Notes:</h2>
-			<form ng-submit="save()">
-				<input type="text" ng-model="title" placeholder="Enter a title here">
+			<form ng-submit="save(index)">
+				<input type="text" ng-model="title" placeholder="Enter a title here. Required!">
 				<textarea type="text" ng-model="body" placeholder="Enter some text here"></textarea>
-				<button class="btn submit">Save</button>
+				<button class="btn submit" ng-class="{disabled: !title}">Save</button>
 			</form>	
 		</div>
 		<div class="span6">
 			<h2>The Notes:</h2>
 			<ol>
-				<li ng-repeat="note in notes">
+				<li ng-repeat="note in notes" ng-click="edit($index)">
 					<h3>Title: {{note.title}}</h3>
 					<p>Body: {{note.body}}</p>
 					<span class="delete" ng-click="delete($index)">X</span>
 				</li>
-			</ol>			
-		</div>		
+			</ol>
+		</div>
 	</div>
 
 </div>

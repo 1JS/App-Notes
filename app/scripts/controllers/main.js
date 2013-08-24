@@ -1,33 +1,50 @@
 'use strict';
 
 angular.module('JSApp')
-  .controller('MainCtrl', function ($scope) {
+	.controller('MainCtrl', function ($scope) {
 
-    // the notes
-    $scope.notes = [{
-    	title: 'Here is a example title',
-    	body: 'Some text here'
-    }]
+		$scope.index = '';
 
-    // save notes
-    $scope.save = function() {
-    	if( !$scope.title ) {
-    		alert("The title shold not be empty :)");
-    	}
-    	else {
-	    	$scope.notes.push({
-	    		title: $scope.title,
-	    		body: $scope.body
-	    	})
+		// the notes
+		$scope.notes = [{
+			title: 'Here is an example title',
+			body: 'Some text here'
+		}];
 
-	    	$scope.title = ''
-	    	$scope.body = ''
-	    };
-    };
+		// save notes
+		$scope.save = function(index) {
+			if(!index) {
+				if( !$scope.title ) {
+					return false;
+				} else {
+					$scope.notes.push({
+						title: $scope.title,
+						body: $scope.body
+					});
 
-    // delete notes
-    $scope.delete = function(index) {
-    	$scope.notes.splice(index, 1);
-    }
+					$scope.title = '';
+					$scope.body = '';
+				}
+			} else {
+				$scope.notes.splice(index, 1, {
+					title: $scope.title,
+					body: $scope.body
+				});
 
-  });
+				$scope.index = '';
+			}
+		};
+
+		// delete notes
+		$scope.delete = function(index) {
+			$scope.notes.splice(index, 1);
+		};
+
+		// edit notes
+		$scope.edit = function(index) {
+			$scope.title = $scope.notes[index].title;
+			$scope.body = $scope.notes[index].body;
+			$scope.index = index;
+		};
+
+	});
