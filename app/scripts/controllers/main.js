@@ -31,7 +31,10 @@ angular.module('JSApp')
 					body: $scope.body
 				});
 
+				// reset
 				$scope.index = '';
+				$scope.title = '';
+				$scope.body = '';
 			}
 		};
 
